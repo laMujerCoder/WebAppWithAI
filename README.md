@@ -1,23 +1,26 @@
-# Recipe Collection Web Application
+# Recipe Collection Web Application using AI
 
 ## Project Overview
 
-The Recipe Collection Web Application is a full-stack web application that allows users to store, organize, view, categorize, and edit recipes.
+The Recipe Collection Web Application is a full-stack web application designed to allow users to create, view, edit, categorize, and organize recipes.
 
-The goal of this project was to gain experience using AI for full stack development. The application uses HTML, CSS, and JavaScript for the user interface, ASP.NET Core with C# for the backend API, and Back4App for persistent data storage.
+This project was created to practice the development of a complete web application while also exploring how AI can be used as a tool throughout the software development process. This included frontend development, backend API development, database communication, cloud deployment, secure management of API credentials, and the use of AI for code development, troubleshooting, and learning new technologies.
+The application was originally developed locally using an ASP.NET Core C# backend. Back4App is used for persistent database storage, and the final web application is deployed using Netlify.
+
+---
 
 ## Features
 
-The application currently supports:
+The application currently allows users to:
 
-- Viewing saved recipes
-- Adding new recipes
-- Editing existing recipes
-- Organizing recipes by category
-- Filtering recipes by category
-- Storing recipe information in an external database
-- Retrieving saved recipes when the application is loaded
-- Responsive webpage styling for desktop and smaller screens
+- View saved recipes
+- Add new recipes
+- Edit existing recipes
+- Assign recipes to categories
+- Filter recipes by category
+- Store recipes permanently in a cloud database
+- Retrieve recipes whenever the application is loaded
+- Access the application through a publicly deployed website
 
 Recipe categories include:
 
@@ -29,59 +32,119 @@ Recipe categories include:
 - Drinks
 - Other
 
+---
+
 ## Technologies Used
 
 ### Frontend
 
-The frontend was created using:
+The frontend of the application was created using:
 
 - HTML
 - CSS
 - JavaScript
 
-HTML provides the structure of the website, CSS is used for the visual design and responsive layout, and JavaScript handles user interaction and communication with the C# API.
+HTML provides the structure of the website, CSS controls the design and responsive layout, and JavaScript handles user interaction and communication with the backend.
 
-### Backend
+### Local Backend
 
-The backend was developed using:
+The application was originally developed using:
 
 - C#
 - ASP.NET Core Web API
 
-ASP.NET Core acts as the middle layer between the website and the database.
+During local development, ASP.NET Core provides API endpoints for managing recipes.
 
-For example, when a user creates a recipe, the data follows this general path:
+The local application follows this general structure:
 
-Website → JavaScript → ASP.NET Core API → Back4App → Database
+    Browser
+       ↓
+    HTML / CSS / JavaScript
+       ↓
+    ASP.NET Core API
+       ↓
+    Back4App
+       ↓
+    Database
 
-When recipes need to be displayed, the process works in the opposite direction:
+The C# backend is separated into models, controllers, and services.
 
-Database → Back4App → ASP.NET Core API → JavaScript → Website
+`Recipe.cs` defines the structure of a recipe.
 
-The API currently uses HTTP operations such as:
+`RecipesController.cs` provides the API endpoints used by the frontend.
 
-- `GET /api/Recipes` - Retrieves recipes
-- `POST /api/Recipes` - Creates a new recipe
-- `PUT /api/Recipes/{id}` - Updates an existing recipe
+`Back4AppService.cs` handles communication between the ASP.NET Core application and Back4App.
 
-## Database and Backend Services
+---
 
-This project uses **Back4App** as an external backend/database service.
+## Recipe API
 
-Back4App provides persistent cloud data storage. This means recipes are not stored only inside the browser or temporarily in the C# application. Recipe data is sent to Back4App and can be retrieved again after the application has been restarted.
+During local development, the ASP.NET Core API supports operations including:
 
-Each recipe contains information such as:
+    GET /api/Recipes
 
-- Name
+Retrieves recipes stored in Back4App.
+
+    POST /api/Recipes
+
+Creates and stores a new recipe.
+
+    PUT /api/Recipes/{id}
+
+Updates an existing recipe using its Back4App object ID.
+
+These operations allow the frontend and backend to remain separate while still communicating with each other.
+
+---
+
+## Database and Back4App
+
+Back4App is used as the cloud database service for this application.
+
+Recipe information stored in Back4App includes:
+
+- Recipe name
 - Category
 - Ingredients
 - Instructions
 
-Back4App also assigns each stored recipe a unique `objectId`. The application uses this ID when a specific recipe needs to be edited.
+Back4App also creates a unique `objectId` for every recipe. This ID is used when a specific recipe needs to be edited.
 
-The C# `Back4AppService` class is responsible for communicating with the Back4App REST API. The `RecipesController` provides API endpoints that the JavaScript frontend can access.
+Because the data is stored in Back4App rather than only in the browser, recipes remain available after the application or computer is restarted.
 
-This separation prevents the frontend from needing to communicate directly with the database.
+---
+
+## Netlify Deployment
+
+Netlify is used to deploy the final website and make the application publicly accessible.
+
+The original development version uses an ASP.NET Core C# backend. The deployed Netlify version therefore includes a Netlify Function that performs the server-side communication required by the website.
+
+The following files were added for deployment:
+
+    netlify.toml
+
+This configuration file tells Netlify where the public website and serverless functions are located.
+
+    netlify/functions/recipes.mjs
+
+This serverless function handles recipe requests between the deployed JavaScript frontend and Back4App.
+
+The deployed application follows this structure:
+
+    Netlify Website
+          ↓
+    JavaScript Frontend
+          ↓
+    Netlify Function
+          ↓
+    Back4App REST API
+          ↓
+    Back4App Database
+
+The Netlify Function supports the GET, POST, and PUT operations required to retrieve, create, and edit recipes.
+
+---
 
 ## Project Structure
 
@@ -98,6 +161,10 @@ The project is organized approximately as follows:
     ├── Services/
     │   └── Back4AppService.cs
     │
+    ├── netlify/
+    │   └── functions/
+    │       └── recipes.mjs
+    │
     ├── wwwroot/
     │   ├── css/
     │   │   └── style.css
@@ -105,67 +172,90 @@ The project is organized approximately as follows:
     │   │   └── recipes.js
     │   └── index.html
     │
-    ├── Program.cs
     ├── appsettings.json
+    ├── netlify.toml
+    ├── Program.cs
     └── README.md
 
-## How the Application Works
+---
 
-When the application starts, JavaScript sends a request to the ASP.NET Core API to retrieve recipes.
+## Security and API Credentials
 
-The `RecipesController` receives the request and uses `Back4AppService` to communicate with Back4App.
+API credentials are not stored directly in the public source code.
 
-Back4App returns the stored recipe data as JSON. The data is returned to the browser, where JavaScript creates recipe cards and displays them on the webpage.
+During local development, ASP.NET Core User Secrets are used to store the Back4App Application ID and REST API key outside of the Git repository.
 
-When a user submits a new recipe, JavaScript creates a JSON representation of the recipe and sends a POST request to the C# API. The backend then sends the information to Back4App for permanent storage.
+For the deployed application, the credentials are stored using Netlify environment variables.
 
-Editing works similarly, except the application sends a PUT request containing the unique Back4App `objectId` of the recipe being changed.
+The Netlify Function accesses these values through environment variables such as:
+
+    BACK4APP_APPLICATION_ID
+    BACK4APP_REST_API_KEY
+
+This allows the application to communicate with Back4App without placing the actual credential values inside the JavaScript files or public GitHub repository.
+
+---
 
 ## Use of Artificial Intelligence
 
-ChatGPT by OpenAI was used as a development and learning assistant during this project.
+ChatGPT by OpenAI was used as a development and learning assistant throughout this project.
 
-I used ChatGPT to help:
+ChatGPT was used to assist with:
 
-- Understand ASP.NET Core project structure
-- Learn how controllers, models, and services interact in C#
-- Develop and troubleshoot REST API requests
-- Understand how to connect an ASP.NET Core application to Back4App
-- Develop portions of the HTML, CSS, and JavaScript frontend
-- Understand JavaScript `fetch()` requests
-- Implement recipe creation and editing
-- Troubleshoot errors during development
-- Explain unfamiliar programming concepts and code
-- Assist with documentation and organization of the project
+- Understanding ASP.NET Core project structure
+- Understanding controllers, models, and services in C#
+- Developing and troubleshooting REST API requests
+- Connecting the ASP.NET Core backend to Back4App
+- Developing portions of the HTML, CSS, and JavaScript frontend
+- Understanding JavaScript `fetch()` requests
+- Implementing recipe creation and editing
+- Implementing recipe categories and filtering
+- Troubleshooting errors during development
+- Understanding API credential security
+- Configuring ASP.NET Core User Secrets
+- Preparing the application for Netlify deployment
+- Creating the Netlify serverless function
+- Assisting with project documentation
 
-AI-generated suggestions were reviewed, tested, and modified while developing the application. ChatGPT was used as a development aid rather than as the application's runtime backend or database.
+AI-generated suggestions and code were reviewed, tested, modified, and integrated into the project during development.
+
+ChatGPT is not used as part of the running application. It was used as a development tool to assist with learning, coding, troubleshooting, and documentation.
+
+---
 
 ## External Services
 
 ### Back4App
 
-Back4App is used for cloud-based data storage and database management. The application communicates with Back4App through its REST API.
+Back4App provides the cloud database used to permanently store recipe information.
 
-Back4App:
-https://www.back4app.com/
+### Netlify
+
+Netlify hosts the publicly deployed frontend and runs the serverless function used to communicate with Back4App.
 
 ### OpenAI ChatGPT
 
 ChatGPT was used as an AI-assisted development and learning tool.
 
-OpenAI:
-https://openai.com/
+---
 
-## Security
+## Running the Application Locally
 
-Back4App credentials should not be exposed in frontend JavaScript or committed to a public GitHub repository.
+To run the ASP.NET Core version locally:
 
-Sensitive API credentials should be stored using secure configuration methods such as ASP.NET Core User Secrets or environment variables.
+1. Clone the GitHub repository.
+2. Open the solution in Visual Studio.
+3. Configure the required Back4App credentials using ASP.NET Core User Secrets.
+4. Build and run the application.
+5. Open the localhost address generated by Visual Studio.
+
+API credentials are intentionally excluded from the GitHub repository and must be configured separately.
+
+---
 
 ## Author
-
 Ellie Garcia
 
-Engineering Design 2 | EGN 4952C
+Engineering Design 2
 
 Florida Atlantic University
