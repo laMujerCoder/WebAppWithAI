@@ -40,7 +40,7 @@ async function loadRecipes() {
     try {
 
         const response =
-            await fetch("/api/Recipes");
+            await fetch("/.netlify/functions/recipes");
 
         if (!response.ok) {
             throw new Error(
@@ -280,7 +280,7 @@ recipeForm.addEventListener(
 
 
         let url =
-            "/api/Recipes";
+            "/.netlify/functions/recipes";
 
         let method =
             "POST";
@@ -289,7 +289,7 @@ recipeForm.addEventListener(
         if (id) {
 
             url =
-                `/api/Recipes/${id}`;
+                `/.netlify/functions/recipes?id=${encodeURIComponent(id)}`;
 
             method =
                 "PUT";
