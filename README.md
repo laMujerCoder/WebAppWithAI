@@ -252,6 +252,8 @@ To run the ASP.NET Core version locally:
 API credentials are intentionally excluded from the GitHub repository and must be configured separately.
 
 ---
+YouTube Link: https://youtu.be/mUt05lakjFI
+---
 
 ## Author
 Ellie Garcia
