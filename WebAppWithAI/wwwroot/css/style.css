@@ -1,0 +1,345 @@
+﻿/* ------------------------------
+   Global styles
+------------------------------ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f8f5ef;
+    color: #292923;
+}
+
+
+/* ------------------------------
+   Navigation
+------------------------------ */
+
+.navbar {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8%;
+    background-color: #fffdf8;
+    border-bottom: 1px solid #e7e1d7;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #292923;
+    font-size: 19px;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.logo-icon {
+    font-size: 24px;
+}
+
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+
+    .nav-links a {
+        color: #55534d;
+        font-size: 15px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+
+        .nav-links a:hover {
+            color: #8b4b34;
+        }
+
+
+.add-button {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 100px;
+    background-color: #354c3c;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+
+    .add-button:hover {
+        background-color: #263a2d;
+        transform: translateY(-1px);
+    }
+
+
+/* ------------------------------
+   Hero
+------------------------------ */
+
+.hero {
+    min-height: 520px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    align-items: center;
+    gap: 50px;
+    padding: 70px 10%;
+    background-color: #efe9dd;
+}
+
+
+.hero-content {
+    max-width: 650px;
+}
+
+
+.eyebrow {
+    margin-bottom: 12px;
+    color: #8b4b34;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+
+.hero h1 {
+    margin: 0 0 20px;
+    max-width: 650px;
+    font-family: Georgia, serif;
+    font-size: clamp(48px, 6vw, 76px);
+    font-weight: 500;
+    line-height: 1.02;
+}
+
+
+    .hero h1 span {
+        color: #8b4b34;
+    }
+
+
+.hero-description {
+    max-width: 570px;
+    margin-bottom: 30px;
+    color: #605e57;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+.primary-button {
+    display: inline-block;
+    padding: 14px 24px;
+    border-radius: 6px;
+    background-color: #354c3c;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+
+    .primary-button:hover {
+        background-color: #263a2d;
+        transform: translateY(-2px);
+    }
+
+
+/* ------------------------------
+   Hero artwork
+------------------------------ */
+
+.hero-art {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.food-circle {
+    width: min(330px, 70vw);
+    height: min(330px, 70vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #d9cdb9;
+    font-size: 130px;
+    box-shadow: 0 25px 50px rgba(67, 57, 42, 0.12);
+}
+
+
+/* ------------------------------
+   Recipe section
+------------------------------ */
+
+.recipe-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 30px 100px;
+}
+
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+
+    .section-heading h2 {
+        margin: 0;
+        font-family: Georgia, serif;
+        font-size: 42px;
+        font-weight: 500;
+    }
+
+
+    .section-heading > p {
+        max-width: 350px;
+        margin: 0;
+        color: #77736b;
+        line-height: 1.6;
+    }
+
+
+/* ------------------------------
+   Recipe cards
+------------------------------ */
+
+.recipe-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+
+.recipe-card {
+    padding: 26px;
+    background-color: #fffdf8;
+    border: 1px solid #e5ded2;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(60, 50, 40, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+
+    .recipe-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(60, 50, 40, 0.1);
+    }
+
+
+    .recipe-card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-family: Georgia, serif;
+        font-size: 26px;
+        color: #292923;
+    }
+
+
+    .recipe-card h4 {
+        margin-bottom: 7px;
+        color: #354c3c;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+
+    .recipe-card p {
+        color: #66635d;
+        line-height: 1.6;
+        white-space: pre-line;
+    }
+
+
+.loading-message {
+    color: #77736b;
+    font-style: italic;
+}
+
+
+/* ------------------------------
+   Footer
+------------------------------ */
+
+footer {
+    padding: 35px;
+    background-color: #354c3c;
+    color: #eee9df;
+    text-align: center;
+}
+
+
+/* ------------------------------
+   Mobile
+------------------------------ */
+
+@media (max-width: 800px) {
+
+    .navbar {
+        padding: 0 5%;
+    }
+
+
+    .nav-links > a {
+        display: none;
+    }
+
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 8%;
+        text-align: center;
+    }
+
+
+    .hero-content {
+        margin: auto;
+    }
+
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+
+    .hero-art {
+        margin-top: 20px;
+    }
+
+
+    .food-circle {
+        width: 230px;
+        height: 230px;
+        font-size: 90px;
+    }
+
+
+    .section-heading {
+        align-items: start;
+        flex-direction: column;
+    }
+}

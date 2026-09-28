@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Recipe Collection</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            <span class="logo-icon">🍴</span>
+            My Recipe Collection
+        </a>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="#recipes">Recipes</a>
+
+            <button class="add-button"
+                    id="open-recipe-form"
+                    type="button">
+                + Add Recipe
+            </button>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="eyebrow">YOUR PERSONAL COOKBOOK</p>
+
+            <h1>
+                Recipes worth
+                <span>remembering.</span>
+            </h1>
+
+            <p class="hero-description">
+                Keep all of your favorite recipes together in one
+                simple collection. Save the meals you love and
+                rediscover them whenever you're hungry.
+            </p>
+
+            <a href="#recipes" class="primary-button">
+                Browse Recipes
+            </a>
+
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+            <div class="food-circle">
+                🍝
+            </div>
+        </div>
+
+    </section>
+    <!-- Recipe form section -->
+    <section id="recipe-form-section"
+             class="recipe-form-section hidden">
+
+        <div class="form-card">
+
+            <div class="form-header">
+                <div>
+                    <p class="eyebrow">RECIPE EDITOR</p>
+                    <h2 id="form-title">Add a Recipe</h2>
+                </div>
+
+                <button id="close-recipe-form"
+                        class="close-button"
+                        type="button"
+                        aria-label="Close recipe form">
+                    ×
+                </button>
+            </div>
+
+            <form id="recipe-form">
+
+                <input type="hidden"
+                       id="recipe-id">
+
+                <label for="recipe-name">
+                    Recipe Name
+                </label>
+
+                <input type="text"
+                       id="recipe-name"
+                       required>
+
+
+                <label for="recipe-category">
+                    Category
+                </label>
+
+                <select id="recipe-category"
+                        required>
+
+                    <option value="Breakfast">
+                        Breakfast
+                    </option>
+
+                    <option value="Lunch">
+                        Lunch
+                    </option>
+
+                    <option value="Dinner">
+                        Dinner
+                    </option>
+
+                    <option value="Dessert">
+                        Dessert
+                    </option>
+
+                    <option value="Snack">
+                        Snack
+                    </option>
+
+                    <option value="Drink">
+                        Drink
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+
+                <label for="recipe-ingredients">
+                    Ingredients
+                </label>
+
+                <textarea id="recipe-ingredients"
+                          rows="7"
+                          placeholder="Enter your ingredients..."
+                          required></textarea>
+
+
+                <label for="recipe-instructions">
+                    Instructions
+                </label>
+
+                <textarea id="recipe-instructions"
+                          rows="9"
+                          placeholder="How do you make it?"
+                          required></textarea>
+
+
+                <div class="form-buttons">
+
+                    <button class="primary-button"
+                            type="submit">
+                        Save Recipe
+                    </button>
+
+                    <button id="cancel-recipe"
+                            class="secondary-button"
+                            type="button">
+                        Cancel
+                    </button>
+
+                </div>
+
+                <p id="recipe-message"
+                   class="recipe-message">
+                </p>
+
+            </form>
+
+        </div>
+
+    </section>
+
+    <!-- Recipe section -->
+    <main id="recipes" class="recipe-section">
+
+        <div class="section-heading">
+
+            <div>
+                <p class="eyebrow">THE COLLECTION</p>
+                <h2>My Recipes</h2>
+            </div>
+
+            <p>
+                A little collection of things worth making again.
+            </p>
+
+        </div>
+
+        <!-- CATEGORY FILTERS GO HERE -->
+        <div class="category-filters">
+
+            <button class="filter-button active"
+                    data-category="All">
+                All
+            </button>
+
+            <button class="filter-button"
+                    data-category="Breakfast">
+                Breakfast
+            </button>
+
+            <button class="filter-button"
+                    data-category="Lunch">
+                Lunch
+            </button>
+
+            <button class="filter-button"
+                    data-category="Dinner">
+                Dinner
+            </button>
+
+            <button class="filter-button"
+                    data-category="Dessert">
+                Dessert
+            </button>
+
+            <button class="filter-button"
+                    data-category="Snack">
+                Snack
+            </button>
+
+            <button class="filter-button"
+                    data-category="Drink">
+                Drinks
+            </button>
+
+        </div>
+
+        <!-- JavaScript will insert recipe cards here -->
+        <div id="recipe-list" class="recipe-grid">
+
+            <p class="loading-message">
+                Loading your recipes...
+            </p>
+
+        </div>
+
+    </main>
+
+
+    <footer>
+        <p>Made with good food in mind. 🍋</p>
+    </footer>
+
+
+    <script src="js/recipes.js"></script>
+
+</body>
+
+</html>
