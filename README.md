@@ -162,32 +162,6 @@ Back4App credentials should not be exposed in frontend JavaScript or committed t
 
 Sensitive API credentials should be stored using secure configuration methods such as ASP.NET Core User Secrets or environment variables.
 
-## Running the Project
-
-To run the project locally:
-
-1. Clone the repository.
-2. Open the solution in Visual Studio.
-3. Configure the required Back4App credentials.
-4. Build the ASP.NET Core project.
-5. Run the project through Visual Studio.
-6. Open the localhost address displayed by ASP.NET Core.
-7. The application will retrieve recipe information from Back4App and display it on the webpage.
-
-## Future Improvements
-
-Possible future improvements include:
-
-- User registration
-- User login/logout
-- Associating recipes with individual accounts
-- Deleting recipes
-- Searching recipes
-- Recipe images
-- Additional categories
-- Improved validation and error handling
-- Improved database security and access control
-
 ## Author
 
 Ellie Garcia
