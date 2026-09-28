@@ -4,7 +4,7 @@
 
 The Recipe Collection Web Application is a full-stack web application that allows users to store, organize, view, categorize, and edit recipes.
 
-The goal of this project was to gain experience connecting a frontend website to a C# backend and an external database service. The application uses HTML, CSS, and JavaScript for the user interface, ASP.NET Core with C# for the backend API, and Back4App for persistent data storage.
+The goal of this project was to gain experience using AI for full stack development. The application uses HTML, CSS, and JavaScript for the user interface, ASP.NET Core with C# for the backend API, and Back4App for persistent data storage.
 
 ## Features
 
